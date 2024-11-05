@@ -3,6 +3,8 @@ import { ViewTransitions } from "astro:transitions";
 import { Tooltips } from "astro-tooltips";
 import Logo from "../Components/logo.astro";
 import Nav from "../Components/nav.astro";
+import GlobalStyles from "../Styles/globalStyles.astro";
+import FoundistDemoStyles from "../Styles/FoundistDemoStyles.astro";
 
 interface Props {
     title?: string;
@@ -16,18 +18,14 @@ const { title = "Earth Charity" } = Astro.props;
         <meta charset="utf-8" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
+
         <title>{title}</title>
-
-        <link
-            rel="stylesheet"
-            href="https://assets.campaignion.org/foundist-demo/v1/green-main.css"
-        />
-
-        <link rel="stylesheet" href="/styles.css" />
 
         <ViewTransitions />
         <Tooltips />
+
+        <FoundistDemoStyles />
+        <GlobalStyles />
     </head>
     <body>
         <header>
