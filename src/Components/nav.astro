@@ -1,29 +1,120 @@
 ---
-const navItems = [
+type NavItem = {
+    text: string;
+    href: string;
+    tooltip?: string;
+    class?: string;
+};
+const navItems: NavItem[] = [
     {
-        name: "Home",
-        href: "/",
+        text: "About",
+        href: "/about",
+        tooltip: "About this site",
     },
     {
-        name: "About",
-        href: "/about",
+        text: "Campaign demos",
+        href: "/campaign-demos",
+        tooltip: "Some demos of campaign pages",
+    },
+    {
+        text: "Donation demos",
+        href: "/donation-demos",
+        tooltip: "Some demos of donation pages",
+    },
+    {
+        text: "Donate",
+        href: "https://demo2.impact-stack.org/donation-2",
+        class: "button small m-0",
+        tooltip:
+            "Just a simple direct link to an Impact Stack donation page with no fancy stuff at all",
     },
 ];
 ---
 
-<nav>
-    {navItems.map((item) => <a href={item.href}>{item.name}</a>)}
-
-    <a href="https://demo2.impact-stack.org/donation-2" class="button small m-0"
-        >Donate</a
+<nav class="nav-container">
+    <button class="menu-button button m-0" aria-label="Toggle menu">Menu</button
     >
+    <div class="nav-links">
+        {
+            navItems.map(({ text, href, tooltip, class: className }) => (
+                <a href={href} title={tooltip} class={className}>
+                    {text}
+                </a>
+            ))
+        }
+    </div>
 </nav>
 
+<script>
+    document.querySelector(".menu-button")?.addEventListener("click", () => {
+        document.querySelector(".nav-links")?.classList.toggle("active");
+        document
+            .querySelector(".nav-container")
+            ?.classList.toggle("drawer-active");
+    });
+</script>
+
 <style>
-    nav {
+    .nav-container {
+        position: relative;
+    }
+
+    .nav-links {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 1rem;
+    }
+
+    .nav-links a:not(.button) {
+        color: #191919;
+        text-decoration: none;
+        font-weight: 700;
+    }
+
+    .nav-links a:not(.button):hover {
+        text-decoration: underline;
+    }
+
+    .menu-button {
+        display: none;
+        cursor: pointer;
+    }
+
+    @media (max-width: 640px) {
+        .nav-container {
+            padding: 1rem;
+        }
+
+        .menu-button {
+            display: block;
+            position: relative;
+            z-index: 20;
+        }
+
+        .nav-links {
+            position: fixed;
+            top: 0;
+            right: -66.666%; /* Start off-screen */
+            width: 66.666%; /* Two-thirds of the screen */
+            height: 100vh;
+            background-color: white;
+            padding: 4rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.5rem;
+            transition: right 0.3s ease-in-out;
+            z-index: 10;
+            box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container.drawer-active .nav-links {
+            right: 0; /* Slide in */
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
     }
 </style>

@@ -6,7 +6,9 @@ import EarthImage from "../Images/elena-mozhvilo-eA32JIBsSu8-unsplash.jpg";
     <h1><slot name="title">Earth Charity</slot></h1>
     <p class="lead">
         <slot name="description"
-            >We are a charity that helps the environment.</slot
+            >We are <span title="This is just a demo site made by Impact Stack."
+                >(not)</span
+            > a charity that helps the environment.</slot
         >
     </p>
 </section>
@@ -27,6 +29,7 @@ import EarthImage from "../Images/elena-mozhvilo-eA32JIBsSu8-unsplash.jpg";
             background-color: #90c92a;
             padding: 0.5rem;
             margin-top: 1rem;
+            text-align: center;
         }
 
         & > p {

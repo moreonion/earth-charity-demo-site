@@ -15,3 +15,10 @@
   white-space: nowrap;
   border-width: 0;
 }
+
+/* Styling for the tooltips */
+.tippy-box[data-theme='default'] {
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.5rem 1rem;
+}

@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from "astro:transitions";
+import { Tooltips } from "astro-tooltips";
 import Logo from "../Components/logo.astro";
 import Nav from "../Components/nav.astro";
 
@@ -26,6 +27,7 @@ const { title = "Earth Charity" } = Astro.props;
         <link rel="stylesheet" href="/styles.css" />
 
         <ViewTransitions />
+        <Tooltips />
     </head>
     <body>
         <header>
@@ -54,5 +56,9 @@ const { title = "Earth Charity" } = Astro.props;
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        @media (min-width: 640px) {
+            flex-direction: column;
+        }
     }
 </style>
