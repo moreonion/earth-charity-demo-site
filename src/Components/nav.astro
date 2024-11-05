@@ -1,0 +1,29 @@
+---
+const navItems = [
+    {
+        name: "Home",
+        href: "/",
+    },
+    {
+        name: "About",
+        href: "/about",
+    },
+];
+---
+
+<nav>
+    {navItems.map((item) => <a href={item.href}>{item.name}</a>)}
+
+    <a href="https://demo2.impact-stack.org/donation-2" class="button small m-0"
+        >Donate</a
+    >
+</nav>
+
+<style>
+    nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+</style>
