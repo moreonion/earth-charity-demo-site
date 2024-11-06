@@ -1,6 +1,4 @@
 ---
-import { ViewTransitions } from "astro:transitions";
-
 import Logo from "@/Components/logo.astro";
 import Nav from "@/Components/nav.astro";
 import GlobalStyles from "@/Styles/globalStyles.astro";
@@ -20,8 +18,6 @@ const { title = "Earth Charity" } = Astro.props;
         <meta name="viewport" content="width=device-width" />
 
         <title>{title}</title>
-
-        <ViewTransitions />
 
         <FoundistDemoStyles />
         <GlobalStyles />

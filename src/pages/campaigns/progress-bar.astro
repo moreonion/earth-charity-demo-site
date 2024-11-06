@@ -21,10 +21,8 @@ import ProgressBarHTML from "@/CodeBlocks/ProgressBar.html";
         </p>
 
         <p>
-            The button on this page is a standard link using the <code
-                >&#60;a&#62;</code
-            > tag that goes straight to the Impact Stack page with no prefilling
-            of the form.
+            The 'Take Action' button on this page is a standard link that goes
+            straight to the Impact Stack page with no prefilling of the form.
 
             <section class="action">
                 <ProgressBarHTML />
@@ -51,7 +49,7 @@ import ProgressBarHTML from "@/CodeBlocks/ProgressBar.html";
             <CodeBlock
                 lang="html"
                 code={ProgressBarHTMLRaw}
-                codeTitle="Progress bar HTML"
+                codeTitle="Progress bar HTML and Javascript"
                 text="See the Progress Bar Code"
             />
         </section>
@@ -75,8 +73,14 @@ import ProgressBarHTML from "@/CodeBlocks/ProgressBar.html";
             }
 
             .action-button .arrow {
-                transition: transform 0.2s ease-out;
                 display: inline-block;
+                transition: transform 0.2s ease-out;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .action-button .arrow {
+                    transition: none;
+                }
             }
 
             .action-button:hover .arrow {
