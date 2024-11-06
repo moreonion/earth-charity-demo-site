@@ -1,0 +1,22 @@
+---
+import { Code } from "astro-expressive-code/components";
+
+const { code, lang, text = "See the code", codeTitle } = Astro.props;
+---
+
+<details>
+    <summary>{text}</summary>
+    <Code {code} {lang} title={codeTitle} />
+</details>
+
+<style>
+    summary {
+        cursor: pointer;
+        user-select: none;
+        font-weight: 700;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+</style>

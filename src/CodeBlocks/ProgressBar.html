@@ -1,0 +1,142 @@
+<label for="progressBar">
+    <span id="signaturesText">0 people have</span> taken action so far
+</label>
+<!-- You could also use some nested <div>s -->
+<progress id="progressBar" max="100" value="0"></progress>
+
+<script>
+    // Adjust the domain as needed
+    const domain = "https://demo2.impact-stack.org";
+
+    // An array of Impact Stack node IDs. Can be multiple eg. ["216", "224"] and it will sum the total signatures of all of them
+    const nodeIDs = ["216"];
+
+    // Adjust the locale if needed. This is for the number formatting
+    const locale = "en-GB";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // You might want to hide the progress bar and only show it again once the data is fetched
+        // You also might want to animate the progress bar like we do on Impact Stack
+
+        updateProgressBar();
+
+        /**
+        * Update a progress bar based on the number of signatures fetched from Impact Stack
+        * Changes the text of the progress bar and the value of the progress bar based on the number of signatures
+        * The text of the progress bar is updated to "1 person has" or "N people have" depending on the number of signatures
+        * The maximum value of the progress bar is updated to the number of signatures divided by 0.9 so the progress bar is always 90% full
+        */
+
+        async function updateProgressBar() {
+            const signaturesText = document.getElementById("signaturesText"); // Adjust the selector if needed
+            const progressBar = document.querySelector("progress#progressBar"); // Adjust the selector if needed
+
+            if (signaturesText === null || progressBar === null || progressBar instanceof HTMLProgressElement === false) {
+                console.error("Signatures text or progress bar not found.");
+                return;
+            }
+
+            const signaturesNumber = await fetchSignatureNumberFromImpactStack(
+                domain,
+                nodeIDs
+
+            );
+
+            if (signaturesNumber === null) {
+                console.log("Failed to fetch number");
+                return;
+            }
+
+
+            // Formatting the number of signatures to display
+            const formattedSignaturesNumber = new Intl.NumberFormat(
+                locale
+            ).format(signaturesNumber);
+
+            if (signaturesNumber === 1) {
+                signaturesText.innerText = `${formattedSignaturesNumber} person has`; // Adjust the text if needed
+            } else {
+                signaturesText.innerText = `${formattedSignaturesNumber} people have`; // Adjust the text if needed
+            }
+
+            progressBar.max = signaturesNumber / 0.9; // This will set the maximum value so that the progress bar is always 90% full
+            progressBar.value = signaturesNumber;
+
+        }
+
+
+        /**
+        * Fetches the signature number from Impact Stack from an array of node IDs
+        *
+        * @param {string} domain - The Impact Stack domain
+        * @param {string[]} nodeIDs - An array of node IDs to fetch the signature number for
+        * @returns {number|null} The signature number, or null if an error occurred
+        */
+
+        async function fetchSignatureNumberFromImpactStack(domain, nodeIDs) {
+            let signaturesNumber = 0;
+
+            for (const nodeID of nodeIDs) {
+                const url = `${domain}/node/${nodeID}/polling`;
+
+                try {
+                    const response = await fetch(url);
+
+                    if (!response.ok) {
+                        console.error(`HTTP error! status: ${response.status}`);
+                        return null;
+                    }
+
+                    const data = await response.json();
+                    const number = data.pgbar.pgbar_default[0]; // The route to the data
+                    signaturesNumber += number;
+                } catch (error) {
+                    console.error(
+                        `There was a problem fetching the data from ${url}: ${error}`
+                    );
+                }
+            }
+
+            return signaturesNumber;
+        }
+
+    });
+</script>
+
+<style>
+    progress {
+        /* Remove default styling */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        /* Remove border in Firefox */
+        border: none;
+
+        /* Dimensions */
+        width: 280px;
+        height: 40px;
+
+    }
+
+    /* Background bar (Chrome/Safari/Edge) */
+    progress::-webkit-progress-bar {
+        background-color: #f3f4f6;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    }
+
+    /* Value bar (Chrome/Safari/Edge) */
+    progress::-webkit-progress-value {
+        background-color: #90c92a;
+        border-radius: 4px;
+        transition: width 0.3s ease;
+    }
+
+    /* Value bar (Firefox) */
+    progress::-moz-progress-bar {
+        background-color: #90c92a;
+        border-radius: 4px;
+        transition: width 0.3s ease;
+    }
+</style>

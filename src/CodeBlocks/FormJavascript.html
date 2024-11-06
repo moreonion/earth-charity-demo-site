@@ -1,0 +1,62 @@
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+        // Feel free to choose another selector to find the forms on your page
+        const forms = Array.from(document.querySelectorAll("form.impact_stack"));
+
+        if (forms.length === 0) {
+            console.error("No forms were found.");
+            return;
+        }
+
+        for (const form of forms) {
+            if (form === null || !(form instanceof HTMLFormElement)) {
+                return;
+            }
+
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+
+                if (event.target === null || !(event.target instanceof HTMLFormElement)) {
+                    return;
+                }
+
+                try {
+                    const formData = new FormData(event.target);
+                    const actionURL = new URL(event.target.action);
+
+                    // This makes a pre-population link for Impact Stack:
+                    // https://support.impact-stack.org/hc/en-us/articles/115001868166-How-to-pre-populate-forms
+                    // The 'keys' here are from the 'name' attribute on the form inputs.
+                    // They should match the 'form key' on your Impact Stack form
+
+                    actionURL.hash = Array.from(formData.entries())
+                        .filter(([, value]) => typeof value === "string")
+                        .map(([key, value]) => {
+
+                            // Validation checks. You could adjust these or add any other checks you need here
+                            // Donation interval must be 1, m or y
+
+                            if (key === "donation_interval" && !["1", "m", "y"].includes(value)) {
+                                throw new Error(`Invalid donation_interval value: ${value}`);
+                            }
+
+                            // Donation amount must be an integer greater than 0
+                            if (key === "donation_amount" && (!Number.isInteger(Number(value)) || Number(value) <= 0)) {
+                                throw new Error(`Invalid donation_amount value: ${value}`);
+                            }
+
+                            return `p:${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+                        })
+                        .join("&");
+
+                    window.open(actionURL.toString(), "_self"); // Use _blank to open in a new tab
+                } catch (error) {
+                    console.error("Form submission error: ", error.message);
+
+                    // You might want to show an error message on the page here
+                }
+            });
+        }
+    });
+</script>

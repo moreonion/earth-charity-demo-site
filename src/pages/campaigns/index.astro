@@ -1,0 +1,28 @@
+---
+import Grid from "@/Components/grid.astro";
+import Layout from "@/Layouts/layout.astro";
+
+import EarthImage from "@/Images/elena-mozhvilo-eA32JIBsSu8-unsplash.jpg";
+
+const demos = [
+    {
+        title: "Progress bar with link",
+        href: "/campaigns/progress-bar",
+        description: "A progress bar with a link",
+        image: EarthImage.src,
+    },
+];
+---
+
+<Layout title="Campaign demos: Earth Charity">
+    <section>
+        <h2>Campaign demos</h2>
+        <Grid items={demos} />
+    </section>
+</Layout>
+
+<style>
+    section {
+        margin-top: 4rem;
+    }
+</style>

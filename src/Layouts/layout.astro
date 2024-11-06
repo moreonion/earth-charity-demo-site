@@ -1,10 +1,10 @@
 ---
 import { ViewTransitions } from "astro:transitions";
-import { Tooltips } from "astro-tooltips";
-import Logo from "../Components/logo.astro";
-import Nav from "../Components/nav.astro";
-import GlobalStyles from "../Styles/globalStyles.astro";
-import FoundistDemoStyles from "../Styles/FoundistDemoStyles.astro";
+
+import Logo from "@/Components/logo.astro";
+import Nav from "@/Components/nav.astro";
+import GlobalStyles from "@/Styles/globalStyles.astro";
+import FoundistDemoStyles from "@/Styles/FoundistDemoStyles.astro";
 
 interface Props {
     title?: string;
@@ -22,7 +22,6 @@ const { title = "Earth Charity" } = Astro.props;
         <title>{title}</title>
 
         <ViewTransitions />
-        <Tooltips />
 
         <FoundistDemoStyles />
         <GlobalStyles />

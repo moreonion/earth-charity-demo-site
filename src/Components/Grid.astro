@@ -1,0 +1,98 @@
+---
+interface Props {
+    items: Item[];
+}
+interface Item {
+    title: string;
+    href: string;
+    description: string;
+    image?: string;
+}
+const { items } = Astro.props;
+---
+
+<section>
+    <div class="grid">
+        {
+            items.map(({ title, href, description, image }) => (
+                <div class="item">
+                    <div class="title">
+                        <a href={href}>{title}</a>
+                    </div>
+                    <div class="description">
+                        {image && (
+                            <div
+                                class="blur-bg"
+                                style={`background-image: url(${image})`}
+                            />
+                        )}
+                        <div class="content">
+                            <p>{description}</p>
+                        </div>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</section>
+
+<style>
+    section {
+        margin-top: 2rem;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+    }
+
+    .item {
+        & .title {
+            background-color: #90c92a;
+            padding: 0.5rem;
+
+            & a {
+                color: white;
+                text-decoration: none;
+                font-weight: 700;
+            }
+        }
+
+        & .description {
+            position: relative;
+            min-height: 300px;
+            overflow: hidden;
+
+            & .blur-bg {
+                position: absolute;
+                top: -10px;
+                left: -10px;
+                right: -10px;
+                bottom: -10px;
+                background-size: cover;
+                background-position: center;
+                filter: blur(5px);
+                z-index: 1;
+            }
+
+            & .content {
+                position: relative;
+                z-index: 2;
+                height: 100%;
+                padding: 1rem;
+                color: white;
+                background-color: rgba(
+                    0,
+                    0,
+                    0,
+                    0.4
+                ); /* Adds a dark overlay for better text readability */
+
+                & p {
+                    margin: 0;
+                }
+            }
+        }
+    }
+</style>

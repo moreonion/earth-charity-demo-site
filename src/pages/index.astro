@@ -1,8 +1,95 @@
 ---
-import Hero from "../Components/hero.astro";
-import Layout from "../Layouts/layout.astro";
+import Grid from "@/Components/grid.astro";
+import Hero from "@/Components/hero.astro";
+import Layout from "@/Layouts/layout.astro";
+
+import EarthImage from "@/Images/elena-mozhvilo-eA32JIBsSu8-unsplash.jpg";
+
+const demos = [
+    {
+        title: "Campaign demos",
+        href: "/campaign-demos",
+        description: "Some demos of campaign pages",
+        image: EarthImage.src,
+    },
+    {
+        title: "Donation demos",
+        href: "/donation-demos",
+        description: "Some demos of donation pages",
+        image: EarthImage.src,
+    },
+    {
+        title: "Donate",
+        href: "https://demo2.impact-stack.org/donation-2",
+        description:
+            "Just a simple direct link to an Impact Stack donation page with no fancy stuff at all",
+        image: EarthImage.src,
+    },
+    {
+        title: "Donate",
+        href: "https://demo2.impact-stack.org/donation-2",
+        description:
+            "Just a simple direct link to an Impact Stack donation page with no fancy stuff at all",
+        image: EarthImage.src,
+    },
+];
 ---
 
 <Layout title="Home: Earth Charity">
     <Hero />
+    <section>
+        <p>
+            Earth Charity is a made-up organisation used to demonstrate <a
+                href="https://impact-stack.org">Impact Stack</a
+            >.
+        </p>
+
+        <p>
+            This is a super basic demo site that gives examples of how you might
+            start a supporter's interaction with an Impact Stack form on your
+            main website.
+        </p>
+
+        <section>
+            <p>
+                <a href="/campaign-demos" class="button small"
+                    >See campaign demos</a
+                >
+            </p>
+            <p>
+                <a href="/donation-demos" class="button small"
+                    >See donation demos</a
+                >
+            </p>
+        </section>
+    </section>
+    <!-- <section>
+        <h2><a href="/campaign-demos">Campaign demos</a></h2>
+        <Grid items={demos} />
+        <p class="text-right small">
+            <a href="/campaign-demos">See all campaign demos</a>
+        </p>
+    </section>
+
+    <section>
+        <h2><a href="/donation-demos">Donation demos</a></h2>
+        <Grid items={demos} />
+        <p class="text-right small">
+            <a href="/donation-demos">See all donation demos</a>
+        </p>
+    </section> -->
 </Layout>
+
+<style>
+    section {
+        margin-top: 4rem;
+    }
+
+    h2 a {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+</style>
