@@ -1,38 +1,8 @@
 ---
-import Grid from "@/Components/grid.astro";
 import Hero from "@/Components/hero.astro";
 import Layout from "@/Layouts/layout.astro";
 
 import EarthImage from "@/Images/elena-mozhvilo-eA32JIBsSu8-unsplash.jpg";
-
-const demos = [
-    {
-        title: "Campaign demos",
-        href: "/campaign-demos",
-        description: "Some demos of campaign pages",
-        image: EarthImage.src,
-    },
-    {
-        title: "Donation demos",
-        href: "/donation-demos",
-        description: "Some demos of donation pages",
-        image: EarthImage.src,
-    },
-    {
-        title: "Donate",
-        href: "https://demo2.impact-stack.org/donation-2",
-        description:
-            "Just a simple direct link to an Impact Stack donation page with no fancy stuff at all",
-        image: EarthImage.src,
-    },
-    {
-        title: "Donate",
-        href: "https://demo2.impact-stack.org/donation-2",
-        description:
-            "Just a simple direct link to an Impact Stack donation page with no fancy stuff at all",
-        image: EarthImage.src,
-    },
-];
 ---
 
 <Layout title="Home: Earth Charity">
@@ -52,14 +22,10 @@ const demos = [
 
         <section>
             <p>
-                <a href="/campaign-demos" class="button small"
-                    >See campaign demos</a
-                >
+                <a href="/campaigns" class="button small">See campaign demos</a>
             </p>
             <p>
-                <a href="/donation-demos" class="button small"
-                    >See donation demos</a
-                >
+                <a href="/donations" class="button small">See donation demos</a>
             </p>
         </section>
     </section>
