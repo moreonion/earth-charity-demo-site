@@ -27,8 +27,8 @@ const navItems: NavItem[] = [
 ---
 
 <nav class="nav-container">
-    <button class="menu-button button m-0" aria-label="Toggle menu">Menu</button
-    >
+    <button class="menu-button button m-0" aria-label="Open menu">Menu</button>
+
     <div class="nav-links">
         {
             navItems.map(({ text, href, tooltip, class: className }) => (
@@ -39,16 +39,33 @@ const navItems: NavItem[] = [
         }
     </div>
 </nav>
-
 <script>
     document.querySelector(".menu-button")?.addEventListener("click", () => {
-        document.querySelector(".nav-links")?.classList.toggle("active");
-        document
-            .querySelector(".nav-container")
-            ?.classList.toggle("drawer-active");
+        const navLinks = document.querySelector(".nav-links");
+        if (navLinks) {
+            navLinks.classList.toggle("active");
+        }
+
+        const navContainer = document.querySelector(".nav-container");
+        if (navContainer) {
+            navContainer.classList.toggle("drawer-active");
+        }
+
+        const menuButton = document.querySelector(
+            "button.menu-button",
+        ) as HTMLButtonElement;
+
+        if (menuButton && navLinks) {
+            if (navLinks.classList.contains("active")) {
+                menuButton.setAttribute("aria-label", "Close menu");
+                menuButton.innerText = "Close";
+            } else {
+                menuButton.setAttribute("aria-label", "Open menu");
+                menuButton.innerText = "Menu";
+            }
+        }
     });
 </script>
-
 <style>
     .nav-container {
         position: relative;
