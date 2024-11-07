@@ -3,6 +3,7 @@ import Layout from "@/layouts/layout.astro";
 import CodeBlock from "@/components/codeblock.astro";
 import PetitionFormHTMLRaw from "@/CodeBlocks/PetitionForm.html?raw";
 import FormJavascriptRaw from "@/CodeBlocks/FormJavascript.html?raw";
+import ProgressBarHTMLRaw from "@/CodeBlocks/ProgressBar.html?raw";
 ---
 
 <Layout title="Petition form: Earth Charity">
@@ -14,12 +15,22 @@ import FormJavascriptRaw from "@/CodeBlocks/FormJavascript.html?raw";
             click the 'Add your name' button, an Impact Stack page will open
             with the form prefilled with the data from the form here.
         </p>
+
+        <p>
+            This also includes <a href="/campaigns/progress-bar"
+                >the live-updated progress bar</a
+            >.
+        </p>
         <p>
             Feel free to try it out. It'll open an Impact Stack form with the
             whatever data you add here already pre-filled.
         </p>
 
         <div class="form-container">
+            <Fragment set:html={ProgressBarHTMLRaw} />
+
+            <p class="h3 mt-4">Add your name</p>
+
             <!-- This is a <form> -->
             <Fragment set:html={PetitionFormHTMLRaw} />
 
