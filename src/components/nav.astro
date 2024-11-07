@@ -33,33 +33,93 @@ const navItems: NavItem[] = [
     </div>
 </nav>
 <script>
-    document.querySelector(".menu-button")?.addEventListener("click", () => {
-        const navLinks = document.querySelector(".nav-links");
-        if (navLinks) {
-            navLinks.classList.toggle("active");
-        }
+    const NAV_SELECTORS = {
+        container: ".nav-container",
+        links: ".nav-links",
+        menuButton: "button.menu-button",
+    } as const;
 
-        const navContainer = document.querySelector(".nav-container");
-        if (navContainer) {
-            navContainer.classList.toggle("drawer-active");
-        }
+    // Elements that should become inert when nav is open
+    const INERT_WITH_NAV_ATTR = "data-inert-with-nav";
 
+    const handleEscapeKey = (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+            setDrawerOpen(false);
+        }
+    };
+
+    const handleClickOutside = (event: MouseEvent) => {
+        const navContainer = document.querySelector(NAV_SELECTORS.container);
+        const menuButton = document.querySelector(NAV_SELECTORS.menuButton);
+
+        if (
+            navContainer &&
+            !navContainer.contains(event.target as Node) &&
+            menuButton !== event.target
+        ) {
+            setDrawerOpen(false);
+        }
+    };
+
+    const setDrawerOpen = (isOpen: boolean) => {
+        const navLinks = document.querySelector(NAV_SELECTORS.links);
+        const navContainer = document.querySelector(NAV_SELECTORS.container);
         const menuButton = document.querySelector(
-            "button.menu-button",
+            NAV_SELECTORS.menuButton,
         ) as HTMLButtonElement;
 
-        if (menuButton && navLinks) {
-            if (navLinks.classList.contains("active")) {
-                menuButton.setAttribute("aria-label", "Close menu");
-                menuButton.innerText = "Close";
+        // All elements that should be inert when nav is open
+        const inertElements = document.querySelectorAll(
+            `[${INERT_WITH_NAV_ATTR}]`,
+        );
+
+        if (!navLinks || !menuButton) return;
+
+        // Update drawer state
+        navLinks.classList.toggle("active", isOpen);
+        navContainer?.classList.toggle("drawer-active", isOpen);
+
+        // Update menu button
+        menuButton.setAttribute(
+            "aria-label",
+            isOpen ? "Close menu" : "Open menu",
+        );
+        menuButton.innerText = isOpen ? "Close" : "Menu";
+
+        // Toggle inert state on elements
+        inertElements.forEach((el) => {
+            if (isOpen) {
+                el.setAttribute("inert", "");
             } else {
-                menuButton.setAttribute("aria-label", "Open menu");
-                menuButton.innerText = "Menu";
+                el.removeAttribute("inert");
             }
+        });
+
+        // Toggle body scroll
+        document.body.style.overflow = isOpen ? "hidden" : "";
+
+        // Toggle event listeners
+        if (isOpen) {
+            window.addEventListener("keydown", handleEscapeKey);
+            document.body.addEventListener("click", handleClickOutside, true);
+        } else {
+            window.removeEventListener("keydown", handleEscapeKey);
+            document.body.removeEventListener(
+                "click",
+                handleClickOutside,
+                true,
+            );
         }
+    };
 
-
-    });
+    // Initialize menu button click handler
+    document
+        .querySelector(NAV_SELECTORS.menuButton)
+        ?.addEventListener("click", () => {
+            const navLinks = document.querySelector(NAV_SELECTORS.links);
+            const isCurrentlyOpen = navLinks?.classList.contains("active");
+            setDrawerOpen(!isCurrentlyOpen);
+        });
 </script>
 <style>
     .nav-container {
