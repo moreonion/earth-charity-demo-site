@@ -1,0 +1,72 @@
+---
+import Layout from "@/layouts/layout.astro";
+import CodeBlock from "@/components/codeblock.astro";
+import PetitionFormHTMLRaw from "@/CodeBlocks/PetitionForm.html?raw";
+import PetitionFormHTML from "@/CodeBlocks/PetitionForm.html";
+
+import FormJavascriptRaw from "@/CodeBlocks/FormJavascript.html?raw";
+import FormJavascriptHTML from "@/CodeBlocks/FormJavascript.html";
+---
+
+<Layout title="Petition form: Earth Charity">
+    <section class="mt-4">
+        <h2>An action page with a form</h2>
+        <p>Imagine this was a page on your main website.</p>
+        <p>
+            Your supporters could start filling out the form here. When they
+            click the 'Add your name' button, an Impact Stack page will open
+            with the form prefilled with the data from the form here.
+        </p>
+        <p>Feel free to try it out.</p>
+
+        <div class="form-container">
+            <!-- This is a <form> -->
+            <PetitionFormHTML />
+
+            <!-- This is a script tag with Javascript in it that intercepts the form submission and opens an Impact Stack page prefilling the fields with the data from the form above. -->
+            <FormJavascriptHTML />
+        </div>
+    </section>
+    <section>
+        <hr />
+        <h2>How to do it</h2>
+        <p>
+            Here's some basic code to get you started. Most organisations would
+            need a web developer to pick this up and adapt it for your needs and
+            your website technology. If you put it on your main website it would
+            likely inherit a lot of the existing styling, but we'd still expect
+            you to need to do some work to make sure it looked on-brand for you.
+        </p>
+
+        <div class="mt-4">
+            <p>
+                You would need something like this Javascript which looks for
+                the form and intercepts the submission. Then it opens an Impact
+                Stack page with the fields prefilled.
+            </p>
+            <CodeBlock
+                code={FormJavascriptRaw}
+                lang="javascript"
+                codeTitle="Petition form Javascript"
+                text="See the Petition Form Javascript Code"
+            />
+        </div>
+
+        <div class="mt-4">
+            <p>Then you would need some HTML for the form itself.</p>
+            <CodeBlock
+                code={PetitionFormHTMLRaw}
+                lang="html"
+                codeTitle="Petition form HTML"
+                text="See the Petition Form Code"
+            />
+        </div>
+    </section>
+
+    <style>
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
+</Layout>

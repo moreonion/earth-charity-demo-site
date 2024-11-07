@@ -5,7 +5,7 @@ import ProgressBarHTMLRaw from "@/CodeBlocks/ProgressBar.html?raw";
 import ProgressBarHTML from "@/CodeBlocks/ProgressBar.html";
 ---
 
-<Layout title="Petition with progress bar: Earth Charity">
+<Layout title="Progress bar with link: Earth Charity">
     <section>
         <h2>An action page with a progress bar and a link</h2>
         <p>Imagine this was a campaign page on your main website.</p>
@@ -25,16 +25,16 @@ import ProgressBarHTML from "@/CodeBlocks/ProgressBar.html";
         <p>
             The 'Take Action' button on this page is a standard link that goes
             straight to the Impact Stack page with no prefilling of the form.
-
-            <section class="action">
-                <ProgressBarHTML />
-                <a
-                    class="button m-0 action-button"
-                    href="https://demo2.impact-stack.org/node/216"
-                    >Take action <span class="arrow">→</span></a
-                >
-            </section>
         </p>
+
+        <section class="action">
+            <ProgressBarHTML />
+            <a
+                class="button m-0 action-button"
+                href="https://demo2.impact-stack.org/node/216"
+                >Take action <span class="arrow">→</span></a
+            >
+        </section>
 
         <section>
             <hr />
@@ -58,9 +58,8 @@ import ProgressBarHTML from "@/CodeBlocks/ProgressBar.html";
 
         <style>
             section {
-                margin-top: 4rem;
-
                 .action {
+                    margin-top: 4rem;
                     display: flex;
                     flex-direction: column;
                     gap: 1rem;
