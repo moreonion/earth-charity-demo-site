@@ -17,7 +17,7 @@ import FormJavascriptHTML from "@/CodeBlocks/FormJavascript.html";
             click the 'Add your name' button, an Impact Stack page will open
             with the form prefilled with the data from the form here.
         </p>
-        <p>Feel free to try it out.</p>
+        <p>Feel free to try it out. It'll open an Impact Stack form with the whatever data you add here already pre-filled.</p>
 
         <div class="form-container">
             <!-- This is a <form> -->
@@ -39,6 +39,7 @@ import FormJavascriptHTML from "@/CodeBlocks/FormJavascript.html";
         </p>
 
         <div class="mt-4">
+        <h3>Javascript</h3>
             <p>
                 You would need something like this Javascript which looks for
                 the form and intercepts the submission. Then it opens an Impact
@@ -53,7 +54,9 @@ import FormJavascriptHTML from "@/CodeBlocks/FormJavascript.html";
         </div>
 
         <div class="mt-4">
-            <p>Then you would need some HTML for the form itself.</p>
+        <h3>HTML</h3>
+
+            <p>Then you would need some HTML for the form itself. You can edit the fields to be whatever you want. Edit the 'action' attribute on the form to be the URL of your Impact Stack form.</p>
             <CodeBlock
                 code={PetitionFormHTMLRaw}
                 lang="html"
