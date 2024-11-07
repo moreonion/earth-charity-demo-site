@@ -1,0 +1,46 @@
+<!--
+The links are at the bottom. Here's some help to understand these links
+
+This is the URL we'll create in these instructions:
+https://demo2.impact-stack.org/donation-2#p:donation_interval=1&p:donation_amount=5
+
+1. Start with the Impact Stack URL: https://demo2.impact-stack.org/donation-2
+2. Add # (hash/pound symbol) after it
+3. For each form field you want to add:
+    - Put `p:` at the start.
+    - Then add the 'form key', eg donation_interval or donation_amount
+    - Then add = (equals) and then the value you want to set it to, eg donation_interval=1 for a one-time donation or donation_amount=10 for a donation of £/€10
+4. Separate each form field you want to add with a & (ampersand)
+
+https://demo2.impact-stack.org/donation-2#p:donation_interval=1&p:donation_amount=5
+
+Donation interval can be 1, m, or y for one-time, monthly, or yearly
+donation_interval=1
+donation_interval=m
+donation_interval=y
+
+Donation amount should be a whole-number over 0, eg donation_amount=5
+
+More help on https://support.impact-stack.org/hc/en-us/articles/115001868166-How-to-pre-populate-forms
+-->
+
+<a
+  href="https://demo2.impact-stack.org/donation-2#p:donation_interval=1&p:donation_amount=5"
+  class="button"
+>
+  Make a one-off €5 donation
+</a>
+<a
+  href="https://demo2.impact-stack.org/donation-2#p:donation_interval=1&p:donation_amount=10"
+  class="button"
+>
+  Make a one-off €10 donation
+</a>
+
+<!-- This one uses some basic styling to look like a button-->
+<a
+  href="https://demo2.impact-stack.org/donation-2#p:donation_interval=m&p:donation_amount=20"
+  class="button"
+>
+  Make a monthly €20 donation
+</a>

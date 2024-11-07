@@ -2,7 +2,6 @@
 import Layout from "@/layouts/layout.astro";
 import CodeBlock from "@/components/codeblock.astro";
 import ProgressBarHTMLRaw from "@/CodeBlocks/ProgressBar.html?raw";
-import ProgressBarHTML from "@/CodeBlocks/ProgressBar.html";
 ---
 
 <Layout title="Progress bar with link: Earth Charity">
@@ -28,7 +27,7 @@ import ProgressBarHTML from "@/CodeBlocks/ProgressBar.html";
         </p>
 
         <section class="action">
-            <ProgressBarHTML />
+            <Fragment set:html={ProgressBarHTMLRaw} />
             <a
                 class="button m-0 action-button"
                 href="https://demo2.impact-stack.org/node/216"
@@ -49,7 +48,6 @@ import ProgressBarHTML from "@/CodeBlocks/ProgressBar.html";
             </p>
 
             <CodeBlock
-                lang="html"
                 code={ProgressBarHTMLRaw}
                 codeTitle="Progress bar HTML and Javascript"
                 text="See the Progress Bar Code"

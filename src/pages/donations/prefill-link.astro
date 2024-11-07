@@ -1,0 +1,67 @@
+---
+import Layout from "@/layouts/layout.astro";
+import CodeBlock from "@/components/codeblock.astro";
+import PrefillLinkHTMLRaw from "@/CodeBlocks/PrefillLink.html?raw";
+import { Code } from "astro-expressive-code/components";
+
+const linkExample = `
+<a href="https://demo2.impact-stack.org/donation-2#p:donation_interval=1&p:donation_amount=5">
+  Make a one-off €5 donation
+</a>
+`;
+---
+
+<Layout title="Prefill link: Earth Charity">
+    <section class="mt-4">
+        <h2>A donation page with links to an Impact Stack donation page</h2>
+        <p>Imagine this was a page that asked for donations on your main website.</p>
+        <p>
+            Your supporters could start click on one of the donation amounts. They look like buttons but are in fact links that open an Impact Stack and prefill the form with the amount on the button.
+        </p>
+        <p>Feel free to try it out. It'll open an Impact Stack form with the donation amount already selected/pre-filled.</p>
+
+        <p>You can use this approach in emails as well.</p>
+
+        <div class="links-container">
+            <Fragment set:html={PrefillLinkHTMLRaw} />
+        </div>
+
+        <p>Here's what the top link there looks like as HTML. Find more examples and explanation at the bottom of this page.</p>
+
+        <Code code={linkExample} wrap></Code>
+    </section>
+
+    <section>
+        <hr />
+        <h2>How to do it</h2>
+
+         <p>This one is a bit simpler than other approaches on this website. You may be able to do this without a web developer. If you want to make the links look like buttons on your website then you may need to find out how to do that for your website's technology.</p>
+
+            <CodeBlock
+                code={PrefillLinkHTMLRaw}
+                codeTitle="Prefill links HTML"
+            />
+
+    </section>
+
+
+</Layout>
+
+<style>
+.links-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid #90c92a;
+    max-width: fit-content;
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow:
+        0 1px 3px 0 rgb(0 0 0 / 0.1),
+        0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+</style>

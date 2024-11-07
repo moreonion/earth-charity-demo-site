@@ -69,7 +69,7 @@ const navItems: NavItem[] = [
         ) as HTMLButtonElement;
 
         // All elements that should be inert when nav is open
-        const inertElements = document.querySelectorAll(
+        const inertElements = document.querySelectorAll<HTMLElement>(
             `[${INERT_WITH_NAV_ATTR}]`,
         );
 
@@ -90,8 +90,10 @@ const navItems: NavItem[] = [
         inertElements.forEach((el) => {
             if (isOpen) {
                 el.setAttribute("inert", "");
+                el.style.filter = "blur(3px)"; // Add blur effect
             } else {
                 el.removeAttribute("inert");
+                el.style.filter = "none"; // Remove blur effect
             }
         });
 
@@ -124,6 +126,7 @@ const navItems: NavItem[] = [
 <style>
     .nav-container {
         position: relative;
+        padding: 1rem 0;
     }
 
     .nav-links {
@@ -149,9 +152,6 @@ const navItems: NavItem[] = [
     }
 
     @media (max-width: 640px) {
-        .nav-container {
-            padding: 1rem;
-        }
 
         .menu-button {
             display: block;

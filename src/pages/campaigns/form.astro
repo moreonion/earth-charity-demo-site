@@ -2,10 +2,7 @@
 import Layout from "@/layouts/layout.astro";
 import CodeBlock from "@/components/codeblock.astro";
 import PetitionFormHTMLRaw from "@/CodeBlocks/PetitionForm.html?raw";
-import PetitionFormHTML from "@/CodeBlocks/PetitionForm.html";
-
 import FormJavascriptRaw from "@/CodeBlocks/FormJavascript.html?raw";
-import FormJavascriptHTML from "@/CodeBlocks/FormJavascript.html";
 ---
 
 <Layout title="Petition form: Earth Charity">
@@ -21,10 +18,12 @@ import FormJavascriptHTML from "@/CodeBlocks/FormJavascript.html";
 
         <div class="form-container">
             <!-- This is a <form> -->
-            <PetitionFormHTML />
+            <Fragment set:html={PetitionFormHTMLRaw} />
 
             <!-- This is a script tag with Javascript in it that intercepts the form submission and opens an Impact Stack page prefilling the fields with the data from the form above. -->
-            <FormJavascriptHTML />
+
+            <Fragment set:html={FormJavascriptRaw} />
+
         </div>
     </section>
     <section>
@@ -45,9 +44,9 @@ import FormJavascriptHTML from "@/CodeBlocks/FormJavascript.html";
                 the form and intercepts the submission. Then it opens an Impact
                 Stack page with the fields prefilled.
             </p>
+
             <CodeBlock
                 code={FormJavascriptRaw}
-                lang="javascript"
                 codeTitle="Petition form Javascript"
                 text="See the Petition Form Javascript Code"
             />
@@ -57,9 +56,9 @@ import FormJavascriptHTML from "@/CodeBlocks/FormJavascript.html";
         <h3>HTML</h3>
 
             <p>Then you would need some HTML for the form itself. You can edit the fields to be whatever you want. Edit the 'action' attribute on the form to be the URL of your Impact Stack form.</p>
+
             <CodeBlock
                 code={PetitionFormHTMLRaw}
-                lang="html"
                 codeTitle="Petition form HTML"
                 text="See the Petition Form Code"
             />
