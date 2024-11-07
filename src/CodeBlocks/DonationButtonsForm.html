@@ -1,0 +1,132 @@
+<!--
+This example uses a lot of classes like form-item and form-type-radios to reuse Earth Charity styles. This will need likely need quite a lot of customisation to make it match your brand.
+-->
+
+<form class="impact_stack" action="https://demo2.impact-stack.org/donation-2">
+  <div class="form-item form-type-select">
+    <label for="donation-interval">Donation Interval</label>
+    <select id="donation-interval" name="donation_interval">
+      <option value="1">One-off</option>
+      <option value="m">Monthly</option>
+      <option value="y">Yearly</option>
+    </select>
+  </div>
+
+  <div class="form-item form-type-radios">
+    <label for="donation-amount">Donation Amount</label>
+
+    <div class="form-radios donation-amount-buttons select-or-other-select" role="radiogroup"
+      aria-label="Select donation amount">
+      <div class="form-item form-type-radio">
+        <input type="radio" id="donation-10" name="amount_radio" value="10"
+          class="form-radio donation-amount-buttons select-or-other-select" tabindex="0">
+        <label class="button option" for="donation-10"><span>£10</span></label>
+      </div>
+      <div class="form-item form-type-radio">
+        <input type="radio" id="donation-20" name="amount_radio" value="20"
+          class="form-radio donation-amount-buttons select-or-other-select" tabindex="0">
+        <label class="button option" for="donation-20"><span>£20</span></label>
+      </div>
+      <div class="form-item form-type-radio">
+        <input type="radio" id="donation-30" name="amount_radio" value="30"
+          class="form-radio donation-amount-buttons select-or-other-select" tabindex="0">
+        <label class="button option" for="donation-30"><span>£30</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- This is a hidden input that is filled by the radio group above  -->
+  <input hidden id="donation-amount" name="donation_amount" min="1" placeholder="Donation amount">
+
+  <div class="mt-4"><button type="submit" class="button">Donate</button></div>
+</form>
+
+<script>
+  const radioGroup = document.querySelector('.form-radios');
+  const donation_amount = document.getElementById('donation-amount');
+  const radioInputs = document.querySelectorAll('.form-radio');
+
+  let lastChecked = null;
+
+  radioInputs.forEach(radio => {
+    radio.addEventListener('click', (e) => {
+      if (lastChecked === radio) {
+        radio.checked = false;
+        lastChecked = null;
+        donation_amount.value = '';
+      } else {
+        lastChecked = radio;
+        donation_amount.value = radio.value;
+      }
+    });
+  });
+
+  radioGroup.addEventListener('keydown', (e) => {
+    const options = [...document.querySelectorAll('.form-radio')];
+    const currentIndex = options.indexOf(document.activeElement);
+
+    switch (e.key) {
+      case 'ArrowRight':
+      case 'ArrowDown':
+        e.preventDefault();
+        const nextIndex = (currentIndex + 1) % options.length;
+        options[nextIndex].focus();
+        options[nextIndex].checked = true;
+        lastChecked = options[nextIndex];
+        donation_amount.value = options[nextIndex].value;
+        break;
+      case 'ArrowLeft':
+      case 'ArrowUp':
+        e.preventDefault();
+        const prevIndex = (currentIndex - 1 + options.length) % options.length;
+        options[prevIndex].focus();
+        options[prevIndex].checked = true;
+        lastChecked = options[prevIndex];
+        donation_amount.value = options[prevIndex].value;
+        break;
+      case 'Space':
+        e.preventDefault();
+        const currentRadio = document.activeElement;
+        if (lastChecked === currentRadio) {
+          currentRadio.checked = false;
+          lastChecked = null;
+          donation_amount.value = '';
+        } else {
+          currentRadio.checked = true;
+          lastChecked = currentRadio;
+          donation_amount.value = currentRadio.value;
+        }
+        break;
+    }
+  });
+</script>
+
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+
+  .form-radios {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 0 !important;
+  }
+
+  .form-type-radio label {
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .form-radios {
+      grid-template-columns: repeat(3, 100px);
+    }
+  }
+
+  .form-radio:focus+label {
+    outline: 2px solid #90c92a;
+    outline-offset: 2px;
+  }
+</style>

@@ -1,0 +1,17 @@
+<!--
+The URL in the action attribute should be the URL of your Impact Stack form
+
+The name attribute on these inputs should match the form key on the Impact Stack form you want to lead your supporters to
+Example: The value of the <select name="donation_interval"> will go into the form field on Impact Stack with the form key of "donation_interval"
+-->
+<form class="impact_stack" action="https://demo2.impact-stack.org/donation-2">
+  <label for="donation-interval">Donation Interval</label>
+  <select id="donation-interval" name="donation_interval">
+    <option value="1">One-off</option>
+    <option value="m">Monthly</option>
+    <option value="y">Yearly</option>
+  </select>
+  <label for="donation-amount">Donation Amount</label>
+  <input type="number" id="donation-amount" name="donation_amount" value="5" min="1" placeholder="Donation amount">
+  <button type="submit" class="button">Donate</button>
+</form>

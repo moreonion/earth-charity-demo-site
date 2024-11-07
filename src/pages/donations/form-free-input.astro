@@ -1,18 +1,18 @@
 ---
 import Layout from "@/layouts/layout.astro";
 import CodeBlock from "@/components/codeblock.astro";
-import PetitionFormHTMLRaw from "@/CodeBlocks/PetitionForm.html?raw";
+import DonationFormFreeTextHTMLRaw from "@/CodeBlocks/DonationFormFreeText.html?raw";
 import FormJavascriptRaw from "@/CodeBlocks/FormJavascript.html?raw";
 ---
 
-<Layout title="Petition form: Earth Charity">
+<Layout title="Donation form with free amount input: Earth Charity">
     <section class="mt-4">
-        <h2>An action page with a form</h2>
+        <h2>A donation page with a form</h2>
         <p>Imagine this was a page on your main website.</p>
         <p>
             Your supporters could start filling out the form here. When they
-            click the 'Add your name' button, an Impact Stack page will open
-            with the form prefilled with the data from the form here.
+            click the 'Donate' button, an Impact Stack page will open with the
+            form prefilled with the data from the form here.
         </p>
         <p>
             Feel free to try it out. It'll open an Impact Stack form with the
@@ -21,7 +21,7 @@ import FormJavascriptRaw from "@/CodeBlocks/FormJavascript.html?raw";
 
         <div class="form-container">
             <!-- This is a <form> -->
-            <Fragment set:html={PetitionFormHTMLRaw} />
+            <Fragment set:html={DonationFormFreeTextHTMLRaw} />
 
             <!-- This is a script tag with Javascript in it that intercepts the form submission and opens an Impact Stack page prefilling the fields with the data from the form above. -->
 
@@ -64,9 +64,9 @@ import FormJavascriptRaw from "@/CodeBlocks/FormJavascript.html?raw";
             </p>
 
             <CodeBlock
-                code={PetitionFormHTMLRaw}
-                codeTitle="Petition form HTML"
-                text="See the Petition Form Code"
+                code={DonationFormFreeTextHTMLRaw}
+                codeTitle="Donation form HTML"
+                text="See the Donation Form Code"
             />
         </div>
     </section>
