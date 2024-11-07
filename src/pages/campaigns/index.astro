@@ -1,8 +1,9 @@
 ---
 import Layout from "@/layouts/layout.astro";
-import Grid from "@/components/grid.astro";
+import CardGrid from "@/components/cardGrid.astro";
 
-import EarthImage from "@/Images/elena-mozhvilo-eA32JIBsSu8-unsplash.jpg";
+import ProgressImage from "@/Images/hayley-murray-6Lf1kzL4AfY-unsplash.jpg";
+import ClipboardsImage from "@/Images/frames-for-your-heart-rPRpBWXn2C4-unsplash.jpg";
 
 const demos = [
     {
@@ -10,21 +11,21 @@ const demos = [
         href: "/campaigns/progress-bar",
         description:
             "A live-updated progress bar with a link to an Impact Stack form",
-        image: EarthImage,
+        image: ProgressImage,
     },
     {
-        title: "Petition form",
+        title: "Petition or lead-gen form",
         href: "/campaigns/form",
         description:
             "A form to go on your main website that a supporter could start completing and then carry on on an Impact Stack form",
-        image: EarthImage,
+        image: ClipboardsImage,
     },
 ];
 ---
 
 <Layout title="Campaign demos: Earth Charity">
     <section>
-        <h2>Campaign demos</h2>
-        <Grid items={demos} />
+        <h2>Campaign and lead-gen demos</h2>
+        <CardGrid items={demos} />
     </section>
 </Layout>

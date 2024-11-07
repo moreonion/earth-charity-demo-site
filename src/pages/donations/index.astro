@@ -1,36 +1,39 @@
 ---
-import Grid from "@/components/grid.astro";
+import CardGrid from "@/components/cardGrid.astro";
 import Layout from "@/layouts/layout.astro";
 
-import EarthImage from "@/Images/elena-mozhvilo-eA32JIBsSu8-unsplash.jpg";
+import LinksImage from "@/Images/henry-perks-tzc7leNh0sA-unsplash.png";
+import LettersSwitchesImage from "@/Images/diomari-madulara-FFZjSpUwc_I-unsplash.jpg";
+import MoneyImage from "@/Images/didier-weemaels-ZKVBM2_Dp84-unsplash.jpg";
+import GiveImage from "@/Images/samuel-regan-asante-JjlkGAc4OUM-unsplash.jpg";
 
 const demos = [
     {
         title: "Simple links",
         href: "/donations/prefill-link",
         description: "A simple link that prefills an Impact Stack form",
-        image: EarthImage,
+        image: LinksImage,
     },
     {
         title: "Tabs with prefill links",
         href: "/donations/tabs-prefill-links",
         description:
             "Multiple links that prefill an Impact Stack form. The links are in groups. The displayed group changes.",
-        image: EarthImage,
+        image: LettersSwitchesImage,
     },
     {
         title: "Donation form with free text input",
         href: "/donations/form-free-input",
         description:
             "A form to go on your main website that opens an Impact Stack form. The donation amount field is a free text box.",
-        image: EarthImage,
+        image: MoneyImage,
     },
     {
         title: "Donation form with donation amount buttons",
         href: "/donations/form-buttons",
         description:
             "A form to go on your main website that opens an Impact Stack form. The donation amount is set by some selectable buttons like on Impact Stack.",
-        image: EarthImage,
+        image: GiveImage,
     },
 ];
 ---
@@ -38,6 +41,6 @@ const demos = [
 <Layout title="Donation demos: Earth Charity">
     <section>
         <h2>Donation demos</h2>
-        <Grid items={demos} />
+        <CardGrid items={demos} />
     </section>
 </Layout>

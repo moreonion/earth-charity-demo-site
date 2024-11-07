@@ -23,10 +23,25 @@
         border-width: 0;
     }
 
-    /* Styling for the tooltips */
+    .arrow {
+        display: inline-block;
+        transition: transform 0.2s ease-out;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .action-button .arrow {
+            transition: none;
+        }
+    }
+
+    .button:hover .arrow {
+        transform: translateX(6px);
+    }
+
+    /* Styling for the tooltips
     .tippy-box[data-theme="default"] {
         font-size: 1rem;
         font-weight: 400;
         padding: 0.5rem 1rem;
-    }
+    } */
 </style>

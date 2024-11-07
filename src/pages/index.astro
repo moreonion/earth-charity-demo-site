@@ -13,12 +13,13 @@ import Layout from "@/layouts/layout.astro";
         </p>
 
         <p>
-            This is a super basic demo site that gives examples of how you might
-            start a supporter's interaction with an Impact Stack form on your
-            main website.
+            This is a super basic demo website that could be an organisation's
+            main website or any website other than an Impact Stack site. It
+            gives examples of how you might start a supporter's interaction with
+            an Impact Stack form on your main website.
         </p>
 
-        <section>
+        <section id="demo_links">
             <p>
                 <a href="/campaigns" class="button small">See campaign demos</a>
             </p>
@@ -32,6 +33,17 @@ import Layout from "@/layouts/layout.astro";
 <style>
     section {
         margin-top: 4rem;
+    }
+
+    #demo_links {
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media (min-width: 640px) {
+        #demo_links {
+            flex-direction: row;
+        }
     }
 
     h2 a {
