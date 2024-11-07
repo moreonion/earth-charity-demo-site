@@ -6,7 +6,7 @@ const { code, lang = "html", text = "See the code", codeTitle } = Astro.props;
 
 <details>
     <summary>{text}</summary>
-    <Code {code} {lang} title={codeTitle} />
+    <Code {code} {lang} title={codeTitle} wrap />
 </details>
 
 <style>
