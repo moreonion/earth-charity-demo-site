@@ -14,7 +14,10 @@ import FormJavascriptRaw from "@/CodeBlocks/FormJavascript.html?raw";
             click the 'Add your name' button, an Impact Stack page will open
             with the form prefilled with the data from the form here.
         </p>
-        <p>Feel free to try it out. It'll open an Impact Stack form with the whatever data you add here already pre-filled.</p>
+        <p>
+            Feel free to try it out. It'll open an Impact Stack form with the
+            whatever data you add here already pre-filled.
+        </p>
 
         <div class="form-container">
             <!-- This is a <form> -->
@@ -23,7 +26,6 @@ import FormJavascriptRaw from "@/CodeBlocks/FormJavascript.html?raw";
             <!-- This is a script tag with Javascript in it that intercepts the form submission and opens an Impact Stack page prefilling the fields with the data from the form above. -->
 
             <Fragment set:html={FormJavascriptRaw} />
-
         </div>
     </section>
     <section>
@@ -38,7 +40,7 @@ import FormJavascriptRaw from "@/CodeBlocks/FormJavascript.html?raw";
         </p>
 
         <div class="mt-4">
-        <h3>Javascript</h3>
+            <h3>Javascript</h3>
             <p>
                 You would need something like this Javascript which looks for
                 the form and intercepts the submission. Then it opens an Impact
@@ -53,9 +55,13 @@ import FormJavascriptRaw from "@/CodeBlocks/FormJavascript.html?raw";
         </div>
 
         <div class="mt-4">
-        <h3>HTML</h3>
+            <h3>HTML</h3>
 
-            <p>Then you would need some HTML for the form itself. You can edit the fields to be whatever you want. Edit the 'action' attribute on the form to be the URL of your Impact Stack form.</p>
+            <p>
+                Then you would need some HTML for the form itself. You can edit
+                the fields to be whatever you want. Edit the 'action' attribute
+                on the form to be the URL of your Impact Stack form.
+            </p>
 
             <CodeBlock
                 code={PetitionFormHTMLRaw}

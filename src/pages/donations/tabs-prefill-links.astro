@@ -1,0 +1,117 @@
+---
+import Layout from "@/layouts/layout.astro";
+import CodeBlock from "@/components/codeblock.astro";
+import TabsWithPrefillLinksRaw from "@/CodeBlocks/TabsWithPrefillLinks.html?raw";
+import { Code } from "astro-expressive-code/components";
+
+const oneTimeLinkExample = `
+  <a
+    href="https://demo2.impact-stack.org/donation-6#p:donation_interval=1&p:donation_amount=3"
+    class="button"
+    aria-label="Donate 3 euros once"
+  >
+    €3
+  </a>
+`;
+
+const monthlyLinkExample = `
+  <a
+    href="https://demo2.impact-stack.org/donation-6#p:donation_interval=m&p:donation_amount=5"
+    class="button"
+    aria-label="Donate 5 euros monthly"
+  >
+    €5
+  </a>
+`;
+---
+
+<Layout title="Tabss with Prefill links: Earth Charity">
+  <section class="mt-4">
+    <h2>
+      A donation page with a selector to show/hide links to an Impact Stack
+      donation page
+    </h2>
+    <p>
+      Imagine this was a page that asked for donations on your main website.
+    </p>
+    <p>
+      Your supporters could start by selecting one of the donation intervals,
+      then one of the donation amounts. The donation amounts look like buttons
+      but are in fact links that open an Impact Stack and prefill the form with
+      the amount on the button.
+    </p>
+    <p>
+      Feel free to try it out. It'll open an Impact Stack form with the donation
+      amount and donation interval already selected/pre-filled.
+    </p>
+
+    <p>
+      This 'tabs' interface where selecting a different donation interval
+      changes the content underneath is just one approach you could take. The
+      basic idea is that you would show or hide different links to prefill an
+      Impact Stack form.
+    </p>
+
+    <div class="tabs-container">
+      <Fragment set:html={TabsWithPrefillLinksRaw} />
+    </div>
+
+    <p>This is an example of one of the one-time links</p>
+    <Code code={oneTimeLinkExample} lang="html" wrap />
+
+    <p class="mt-4">
+      This is an example of one of the monthly links. Note how this is the same
+      as the one-time link above except <code>donation_interval</code> is set to
+      <code>m</code> and <code>donation_amount</code> is set to <code>5</code>.
+      The text inside the link <code>€5</code> is different too. Finally, the <code
+        >aria-label</code
+      > for screenreaders is customised too.
+    </p>
+    <Code code={monthlyLinkExample} lang="html" wrap />
+  </section>
+
+  <section>
+    <hr />
+    <h2>How to do it</h2>
+
+    <p>
+      The example of using a tabs interface here is very much just one idea of
+      how you might do this. The basic idea is that you have multiple simple
+      links that prepopulate an Impact Stack form and show and hide them
+      somehow.
+    </p>
+
+    <p>
+      Here's the code for the tabs interface above. Most organisations would
+      need a web developer to pick this up and adapt it for your needs and your
+      website technology. You might decide you don't want to use a tab interface
+      at all and there is an alternative that you'd prefer. If you put this on
+      your main website it would likely inherit some of the existing styling,
+      but we'd still expect you to need to do some work to make sure it looked
+      on-brand for you.
+    </p>
+
+    <CodeBlock
+      code={TabsWithPrefillLinksRaw}
+      codeTitle="Tabs with prefill links HTML"
+    />
+  </section>
+</Layout>
+
+<style>
+  .tabs-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid #90c92a;
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow:
+      0 1px 3px 0 rgb(0 0 0 / 0.1),
+      0 1px 2px -1px rgb(0 0 0 / 0.1);
+  }
+</style>

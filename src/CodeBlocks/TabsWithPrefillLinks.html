@@ -1,0 +1,222 @@
+<div class="tabs">
+  <div class="tab-nav" role="tablist" aria-label="Donation options">
+    <button role="tab" aria-selected="true" aria-controls="panel-tab1" id="tab1" data-tab="tab1" tabindex="0">
+      One-time
+    </button>
+    <button role="tab" aria-selected="false" aria-controls="panel-tab2" id="tab2" data-tab="tab2" tabindex="-1">
+      MonthlyG
+    </button>
+    <button role="tab" aria-selected="false" aria-controls="panel-tab3" id="tab3" data-tab="tab3" tabindex="-1">
+      Annually
+    </button>
+  </div>
+
+  <div class="tab-body">
+    <div role="tabpanel" id="panel-tab1" aria-labelledby="tab1" tabindex="0" data-tabpanel="tab1">
+      <h2>Make a one-time donation</h2>
+      <div class="amounts-wrapper">
+        <a href="https://demo2.impact-stack.org/donation-6#p:donation_interval=1&p:donation_amount=3" class="button"
+          aria-label="Donate 3 euros once">
+          €3
+        </a>
+        <a href="https://demo2.impact-stack.org/donation-6#p:donation_interval=1&p:donation_amount=5" class="button"
+          aria-label="Donate 5 euros once">
+          €5
+        </a>
+        <a href="https://demo2.impact-stack.org/donation-6#p:donation_interval=1&p:donation_amount=10" class="button"
+          aria-label="Donate 10 euros once">
+          €10
+        </a>
+      </div>
+    </div>
+
+    <div role="tabpanel" id="panel-tab2" aria-labelledby="tab2" tabindex="0" hidden data-tabpanel="tab2">
+      <h2>Make a monthly donation</h2>
+      <div class="amounts-wrapper">
+        <a href="https://demo2.impact-stack.org/donation-6#p:donation_interval=m&p:donation_amount=5" class="button"
+          aria-label="Donate 5 euros monthly">
+          €5
+        </a>
+        <a href="https://demo2.impact-stack.org/donation-6#p:donation_interval=m&p:donation_amount=10" class="button"
+          aria-label="Donate 10 euros monthly">
+          €10
+        </a>
+        <a href="https://demo2.impact-stack.org/donation-6#p:donation_interval=m&p:donation_amount=20" class="button"
+          aria-label="Donate 20 euros monthly">
+          €20
+        </a>
+      </div>
+    </div>
+
+    <div role="tabpanel" id="panel-tab3" aria-labelledby="tab3" tabindex="0" hidden data-tabpanel="tab3">
+      <h2>Make an annual donation</h2>
+      <div class="amounts-wrapper">
+        <a href="https://demo2.impact-stack.org/donation-6#p:donation_interval=y&p:donation_amount=50" class="button"
+          aria-label="Donate 50 euros annually">
+          €50
+        </a>
+        <a href="https://demo2.impact-stack.org/donation-6#p:donation_interval=y&p:donation_amount=100" class="button"
+          aria-label="Donate 100 euros annually">
+          €100
+        </a>
+        <a href="https://demo2.impact-stack.org/donation-6#p:donation_interval=y&p:donation_amount=200" class="button"
+          aria-label="Donate 200 euros annually">
+          €200
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .tab-nav {
+    display: grid;
+    gap: 4px;
+    padding: 10px;
+    background-color: #f5f5f5;
+  }
+
+  @media (min-width: 768px) {
+    .tab-nav {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  [role="tab"] {
+    padding: 10px 20px;
+    border: none;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  [role="tab"]:hover {
+    background-color: #d0d0d0;
+  }
+
+  [role="tab"]:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+  }
+
+  [role="tab"][aria-selected="true"] {
+    background-color: #90c92a;
+    color: white;
+    font-weight: 700;
+  }
+
+  [role="tabpanel"] {
+    min-height: 200px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+  }
+
+  [role="tabpanel"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #4a90e2;
+  }
+
+  [role="tabpanel"][hidden] {
+    display: none;
+  }
+
+  .amounts-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .amounts-wrapper {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #90c92a;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+
+  .button:hover {
+    background-color: #7ab021;
+  }
+
+  .button:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll('[role="tab"]');
+    const tabList = document.querySelector('[role="tablist"]');
+
+    // Enable arrow navigation between tabs
+    tabList.addEventListener("keydown", (e) => {
+      const targetTab = e.target.closest('[role="tab"]');
+      if (!targetTab) return;
+
+      const tabArray = Array.from(tabs);
+      const index = tabArray.indexOf(targetTab);
+
+      let newTab;
+
+      switch (e.key) {
+        case "ArrowLeft":
+          newTab = tabArray[index - 1] || tabArray[tabArray.length - 1];
+          break;
+        case "ArrowRight":
+          newTab = tabArray[index + 1] || tabArray[0];
+          break;
+        case "Home":
+          newTab = tabArray[0];
+          break;
+        case "End":
+          newTab = tabArray[tabArray.length - 1];
+          break;
+        default:
+          return;
+      }
+
+      e.preventDefault();
+      switchTab(newTab);
+    });
+
+    // Handle click events
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        switchTab(tab);
+      });
+    });
+
+    function switchTab(newTab) {
+      const activePanelId = newTab.getAttribute("aria-controls");
+
+      // Update all tabs
+      tabs.forEach((tab) => {
+        const panelId = tab.getAttribute("aria-controls");
+        const panel = document.getElementById(panelId);
+
+        if (tab === newTab) {
+          tab.setAttribute("aria-selected", "true");
+          tab.setAttribute("tabindex", "0");
+          panel.removeAttribute("hidden");
+        } else {
+          tab.setAttribute("aria-selected", "false");
+          tab.setAttribute("tabindex", "-1");
+          panel.setAttribute("hidden", "");
+        }
+      });
+
+      newTab.focus();
+    }
+  });
+</script>
