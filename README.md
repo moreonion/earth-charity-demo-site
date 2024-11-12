@@ -2,7 +2,7 @@
 
 A **really really** bare bones site that can demo things you can do on your main website to interact with Impact Stack.
 
-## 🧞 Commands
+## Commands
 
 All commands are run from the root of the project, from a terminal:
 
