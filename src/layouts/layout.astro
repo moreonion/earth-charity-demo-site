@@ -10,6 +10,8 @@ interface Props {
 }
 
 const { title = "Earth Charity" } = Astro.props;
+
+const pageTitle = title ? `${title}: Earth Charity` : "Earth Charity";
 ---
 
 <html lang="en">
@@ -18,7 +20,7 @@ const { title = "Earth Charity" } = Astro.props;
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
 
-        <title>{title}</title>
+        <title>{pageTitle}</title>
 
         <FoundistDemoStyles />
         <GlobalStyles />
@@ -28,9 +30,9 @@ const { title = "Earth Charity" } = Astro.props;
             <div data-inert-with-nav>
                 <a href="/">
                     <Image
-                       src={LogoImage}
-                       alt="Earth Charity Logo"
-                       loading="eager"
+                        src={LogoImage}
+                        alt="Earth Charity Logo"
+                        loading="eager"
                     />
                     <span class="sr-only">Earth Charity</span>
                 </a>
