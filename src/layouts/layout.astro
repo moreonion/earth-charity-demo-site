@@ -24,6 +24,8 @@ const pageTitle = title ? `${title}: Earth Charity` : "Earth Charity";
 
         <FoundistDemoStyles />
         <GlobalStyles />
+
+        <slot name="head" />
     </head>
     <body>
         <header>
@@ -43,7 +45,16 @@ const pageTitle = title ? `${title}: Earth Charity` : "Earth Charity";
             <main>
                 <slot />
             </main>
-            <!-- <footer></footer> -->
+            <footer>
+                <p>
+                    Earth Charity is a made-up organisation used to demonstrate
+                    Impact Stack. This is a super basic demo website that could
+                    be an organisation's main website or any website other than
+                    an Impact Stack site. It gives examples of how you might
+                    start a supporter's interaction with an Impact Stack form on
+                    your main website.
+                </p>
+            </footer>
         </div>
     </body>
 </html>

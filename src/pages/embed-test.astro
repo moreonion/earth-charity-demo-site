@@ -1,0 +1,73 @@
+---
+import Layout from "@/layouts/layout.astro";
+---
+
+<Layout title="Embed test">
+    <slot name="head">
+        <style>
+            .form-widget a.button,
+            .form-widget a.button:link,
+            .form-widget a.button:visited {
+                font-family: Helvetica, Arial, sans;
+                background: top left #f27140;
+                font-weight: bold;
+                display: block;
+                padding: 0.5em 1.5em 0.45em;
+                color: #fff;
+                text-decoration: none;
+                border: 1px solid #ef4e10;
+                border-bottom: 3px solid #e0490f;
+                text-shadow: 1px 1px 1px #590e0f;
+                box-shadow: 0px 0px 5px inset #ef4e10;
+                max-width: 350px;
+                -khtml-border-radius: 0.25em;
+                -moz-border-radius: 0.25em;
+                -webkit-border-radius: 0.25em;
+                border-radius: 0.25em;
+            }
+            .form-widget a.button:active {
+                box-shadow: -3px -3px 4px inset #000;
+                background: #ef4e10;
+                -moz-box-shadow: -3px -3px 4px inset #000;
+                border-bottom: 1px solid #f16632;
+                border-top: 1px solid #f27140;
+                border-left: 1px solid #f27140;
+                color: #fff;
+            }
+        </style>
+    </slot>
+    <div class="form-widget" id="embed">
+        <a
+            id="embed-fallback-link"
+            href="https://demo2.impact-stack.org/variable-suggested-donation-amounts?source=widget"
+            target="_blank"
+            class="button">Donate now!</a
+        >
+    </div>
+</Layout>
+
+<script
+    is:inline
+    type="text/javascript"
+    src="https://demo2.impact-stack.org/sites/demo2/modules/contrib/campaignion/campaignion_webform_widget/js/embed.js"
+></script>
+<script is:inline type="text/javascript">
+    var referer = window.location.href;
+    window.onload = function () {
+        var options = {
+            src:
+                "https://demo2.impact-stack.org/variable-suggested-donation-amounts?embed=1&source=widget&external_referer=" +
+                referer,
+            domain: "https://demo2.impact-stack.org",
+            element: "embed",
+        };
+        if (IframeResize.load(options)) {
+            var link = document.getElementById(
+                options.element + "-fallback-link",
+            );
+            if (link) {
+                link.style.display = "none";
+            }
+        }
+    };
+</script>
