@@ -37,16 +37,13 @@ import Layout from "@/layouts/layout.astro";
         </style>
     </slot>
 
-    <p>
-        We're embedding from
-        https://demo2.impact-stack.org/variable-suggested-donation-amounts
-    </p>
+    <p>We're embedding from https://demo2.impact-stack.org/node/288</p>
     <div class="form-widget" id="embed">
         <a
             id="embed-fallback-link"
-            href="https://demo2.impact-stack.org/variable-suggested-donation-amounts?source=widget"
+            href="https://demo2.impact-stack.org/different-form-step-lengths?source=widget"
             target="_blank"
-            class="button">Donate now!</a
+            class="button">Take action now!</a
         >
     </div>
 </Layout>
@@ -56,12 +53,13 @@ import Layout from "@/layouts/layout.astro";
     type="text/javascript"
     src="https://demo2.impact-stack.org/sites/demo2/modules/contrib/campaignion/campaignion_webform_widget/js/embed.js"
 ></script>
+
 <script is:inline type="text/javascript">
     var referer = window.location.href;
     window.onload = function () {
         var options = {
             src:
-                "https://demo2.impact-stack.org/variable-suggested-donation-amounts?embed=1&source=widget&external_referer=" +
+                "https://demo2.impact-stack.org/different-form-step-lengths?embed=1&source=widget&external_referer=" +
                 referer,
             domain: "https://demo2.impact-stack.org",
             element: "embed",
